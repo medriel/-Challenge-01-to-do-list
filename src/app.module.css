@@ -1,0 +1,55 @@
+.teste {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.content {
+  margin-top: 4rem;
+}
+
+.metrics {
+  width: 55vw;
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.metrics>div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.metrics .createdTasks {
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--blue-light)
+}
+
+.metrics .concludedTasks {
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: var(--purple-light)
+}
+
+.metrics .tasksCount {
+  display: flex;
+  border-radius: 999px;
+  padding: 2px 8px;
+
+  align-items: center;
+  justify-content: center;
+
+  background: var(--gray-400);
+}
+
+.metrics .tasksCount span {
+  color: var(--gray-200);
+  font-weight: bold;
+  font-size: 0.75rem;
+}
