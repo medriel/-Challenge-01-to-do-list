@@ -1,17 +1,34 @@
-import { useState } from "react"
+import { ChangeEvent, FormEvent } from "react"
 import styles from './styles.module.css'
 import { PlusCircle } from '@phosphor-icons/react'
+import { v4 as uuidv4 } from 'uuid'
 
-export function InputTask() {
+interface InputTaskProps {
+  newTask: string;
+  setNewTask: (value: string) => void
+  setTaskList: (value: any) => void
+}
 
-  const [newTask, setNewTask] = useState('')
+export function InputTask({ newTask, setNewTask, setTaskList }: InputTaskProps) {
 
-  function handleCreateNewTask(data: any) {
-    console.log(data)
+  function handleCreateNewTask(event: FormEvent) {
+    event.preventDefault()
+
+    setTaskList((prevState: any) => [
+      ...prevState,
+      { id: uuidv4(), text: newTask, isDone: false },
+    ])
+
+    setNewTask('')
   }
 
-  function handleNewTaskChange() {
+  function handleNewTaskChange(event: ChangeEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('')
+    setNewTask(event.target.value)
+  }
 
+  function handleNewTaskInvalid(event: ChangeEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('Esse campo é obrigatório!')
   }
 
   return (
@@ -23,7 +40,7 @@ export function InputTask() {
           placeholder="Adicione uma nova tarefa"
           value={newTask}
           onChange={handleNewTaskChange}
-          // onInvalid={handleNewTaskInvalid}
+          onInvalid={handleNewTaskInvalid}
           required
         />
 
